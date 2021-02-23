@@ -1,0 +1,15 @@
+- name: Include secret variables.
+  include_vars: ./roles/ark-deploy/vars/secrets.yml
+
+- name: Deploy ARK instance configurations.
+  template:
+    src: ./roles/ark-deploy/templates/ark_instance.cfg.j2
+    dest: "/etc/arkmanager/instances/{{ item.name | replace(\"_P\",'') | lower }}.cfg"
+    mode: 0644
+  with_items: "{{ ark_server_maps }}"
+
+- name: Deploy ARK customized Game.ini file.
+  template:
+    src: ./roles/ark-deploy/templates/Game.ini.j2
+    dest: /etc/arkmanager/config.Game.ini
+    mode: 0644

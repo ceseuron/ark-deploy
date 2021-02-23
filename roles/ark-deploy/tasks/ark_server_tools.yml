@@ -1,0 +1,23 @@
+- name: Check if Ark Server Tools is already present.
+  stat:
+    path: /etc/arkmanager/arkmanager.cfg
+  register: ark_manager_cfg
+
+- name: Run ARK Server tools installer.
+  command: ./roles/ark-deploy/files/arkmanager {{ ark_user }} --install-service
+  when: not ark_manager_cfg.stat.exists
+
+- name: Deploy ARK Server Tools configuration.
+  template:
+    src: ./roles/ark-deploy/templates/arkmanager.cfg.j2
+    dest: /etc/arkmanager/arkmanager.cfg
+    mode: 0644
+
+- name: Check if ARK has been installed already.
+  stat:
+    path: "/home/{{ ark_user }}/ARK/version.txt"
+  register: ark_version_file
+
+- name: Install ARK for the first time. This may take a while...
+  command: arkmanager install
+  when: not ark_version_file.stat.exists

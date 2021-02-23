@@ -1,0 +1,87 @@
+- name: Install multiverse repository.
+  apt_repository:
+    repo: deb http://archive.ubuntu.com/ubuntu focal multiverse
+    state: present
+    update_cache: true
+
+- name: Install software-properties-common
+  apt:
+    name: software-properties-common
+    state: present
+    update_cache: true
+
+- name: Check if i386 architecture is installed already.
+  shell: dpkg --print-foreign-architectures | grep i386
+  register: i386_result
+
+- name: Install i386 architecture.
+  command: dpkg --add-architecture i386
+  when: i386_result.rc >= 1
+
+- name: Install packages.
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - lib32gcc1
+  - perl-modules
+  - curl
+  - lsof
+  - libc6-i386
+  - bzip2
+
+- name: Auto-accept Steam license.
+  debconf:
+    name: "steam"
+    question: "steam/question"
+    value: "I AGREE"
+    vtype: "select"
+
+- name: Install package steamcmd.
+  apt:
+    name: steamcmd
+    state: present
+
+- name: Set open file limit for sysctl.
+  sysctl:
+    name: fs.file-max
+    value: 100000
+    state: present
+    reload: yes
+
+- name: Set PAM nofile hard limit.
+  pam_limits:
+    domain: "*"
+    limit_item: nofile
+    limit_type: hard
+    value: 1000000
+
+- name: Set PAM nofile soft limit.
+  pam_limits:
+    domain: "*"
+    limit_item: nofile
+    limit_type: soft
+    value: 1000000
+
+- name: Set PAM session requirements.
+  pamd:
+    name: common-session
+    module_path: pam_systemd.so
+    type: session
+    control: optional
+    new_type: session
+    new_control: required
+    new_module_path: pam_limits.so
+    state: after
+
+- name: Set up ARK group.
+  group:
+    name: "{{ ark_group }}"
+    state: present
+
+- name: Set up ARK user.
+  user:
+    name: "{{ ark_user }}"
+    comment: ARK server user.
+    group: "{{ ark_group }}"
+    state: present
