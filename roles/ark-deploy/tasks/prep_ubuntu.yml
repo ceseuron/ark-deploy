@@ -13,6 +13,7 @@
 - name: Check if i386 architecture is installed already.
   shell: dpkg --print-foreign-architectures | grep i386
   register: i386_result
+  ignore_errors: true
 
 - name: Install i386 architecture.
   command: dpkg --add-architecture i386
