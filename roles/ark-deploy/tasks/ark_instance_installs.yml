@@ -8,6 +8,11 @@
   with_items: "{{ ark_server_maps }}"
   when: not ark_instances_installed.stat.exists
 
+- name: Install ARK mods. This will take some time.
+  command: "arkmanager installmods @{{ item.name | replace(\"_P\",'') | lower }}"
+  with_items: "{{ ark_server_maps }}"
+  when: not ark_instances_installed.stat.exists
+
 - name: Create ARK instance installed flag.
   template:
     src: ./roles/ark-deploy/templates/instances_installed.cfg.j2
@@ -15,8 +20,3 @@
     owner: "{{ ark_user }}"
     group: "{{ ark_group }}"
     mode: 0644
-
-- name: Install ARK mods. This will take some time.
-  command: "arkmanager installmods @{{ item.name | replace(\"_P\",'') | lower }}"
-  with_items: "{{ ark_server_maps }}"
-  when: not ark_instances_installed.stat.exists
