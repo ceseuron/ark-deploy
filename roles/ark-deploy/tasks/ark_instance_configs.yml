@@ -17,8 +17,9 @@
 - name: Deploy ARK customized GameUserSettings.ini file.
   template:
     src: ./roles/ark-deploy/templates/GameUserSettings.ini.j2
-    dest: /etc/arkmanager/config.GameUserSettings.ini
+    dest: "/etc/arkmanager/config.{{ item.name | lower }}.GameUserSettings.ini"
     mode: 0644
+  with_items: "{{ ark_server_maps }}"
 
 - name: Make ARK Saved directory.
   file:
