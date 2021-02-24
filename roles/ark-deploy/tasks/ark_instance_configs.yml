@@ -27,6 +27,7 @@
     owner: "{{ ark_user }}"
     group: "{{ ark_group }}"
     mode: 0755
+  with_items: "{{ ark_server_maps }}"
 
 - name: Make ARK Config directory.
   file:
@@ -35,6 +36,7 @@
     owner: "{{ ark_user }}"
     group: "{{ ark_group }}"
     mode: 0755
+  with_items: "{{ ark_server_maps }}"
 
 - name: Make ARK LinuxServer directory.
   file:
@@ -43,3 +45,4 @@
     owner: "{{ ark_user }}"
     group: "{{ ark_group }}"
     mode: 0755
+  with_items: "{{ ark_server_maps }}"
