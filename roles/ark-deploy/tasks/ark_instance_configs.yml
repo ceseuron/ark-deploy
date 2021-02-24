@@ -13,3 +13,33 @@
     src: ./roles/ark-deploy/templates/Game.ini.j2
     dest: /etc/arkmanager/config.Game.ini
     mode: 0644
+
+- name: Deploy ARK customized GameUserSettings.ini file.
+  template:
+    src: ./roles/ark-deploy/templates/GameUserSettings.ini.j2
+    dest: /etc/arkmanager/config.GameUserSettings.ini
+    mode: 0644
+
+- name: Make ARK Saved directory.
+  file:
+    path: "/home/{{ ark_user }}/arkservers/{{ item.name | replace(\"_P\",'') | lower }}/ShooterGame/Saved/Config/LinuxServer"
+    state: directory
+    owner: "{{ ark_user }}"
+    group: "{{ ark_group }}"
+    mode: 0755
+
+- name: Make ARK Config directory.
+  file:
+    path: "/home/{{ ark_user }}/arkservers/{{ item.name | replace(\"_P\",'') | lower }}/ShooterGame/Saved/Config/"
+    state: directory
+    owner: "{{ ark_user }}"
+    group: "{{ ark_group }}"
+    mode: 0755
+
+- name: Make ARK LinuxServer directory.
+  file:
+    path: "/home/{{ ark_user }}/arkservers/{{ item.name | replace(\"_P\",'') | lower }}/ShooterGame/Saved/Config/LinuxServer"
+    state: directory
+    owner: "{{ ark_user }}"
+    group: "{{ ark_group }}"
+    mode: 0755

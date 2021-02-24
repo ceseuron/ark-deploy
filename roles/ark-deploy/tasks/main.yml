@@ -1,8 +1,8 @@
-- name: Prepare system - Ubuntu/Debian
+- name: Prepare system - Ubuntu/Debian.
   include_tasks: prep_ubuntu.yml
   when: ansible_facts['os_family'] == 'Debian'
 
-- name: Install ARK Server Tools
+- name: Install ARK Server Tools.
   include_tasks: ark_server_tools.yml
 
 - name: Deploy ARK instance configurations.
@@ -10,3 +10,6 @@
 
 - name: Install ARK instances.
   include_tasks: ark_instance_installs.yml
+
+- name: Start ARK instances.
+  include_tasks: ark_instance_services.yml

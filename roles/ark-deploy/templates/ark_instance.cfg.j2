@@ -2,11 +2,19 @@
 arkserverroot="/home/{{ ark_user }}/arkservers/{{ item.name | lower }}"
 arkbackupdir="/home/{{ ark_user }}/ark_backups/{{ item.name | lower }}"
 arkGameIniFile="/etc/arkmanager/config.Game.ini"
+arkGameUserSettingsIniFile="/etc/arkmanager/config.Game.ini"
 arkStagingDir="/home/{{ ark_user }}/ARK-Staging"
+
+# Automatically backup and update.
+arkAutoUpdateOnStart="true"
+arkBackupPreUpdate="true"
 
 # Options to automatically remove old backups to keep backup size in check
 # Each compressed backup is generally about 1-2MB in size.
-arkMaxBackupSizeMB="500"                                            # Set to automatically remove old backups when size exceeds this limit
+arkMaxBackupSizeMB="500"
+
+# Update warning config.
+arkwarnminutes="30"
 
 # Update warning messages
 # Modify as desired, putting the %d replacement operator where the number belongs
@@ -31,13 +39,14 @@ ark_MaxPlayers="{{ ark_max_players }}"
 ark_GameModIds="{{ ark_mod_ids }}"
 ark_AltSaveDirectoryName="Saved-{{ item.name }}"
 
+
 # Additional startup options
 arkflag_ForceRespawnDinos=""
 arkflag_ForceAllowCaveFlyers=""
 
 # ark cluster settings
 arkflag_NoTransferFromFiltering=""
-arkopt_clusterid=pvearkcluster
+arkopt_clusterid="{{ark_cluster_id}}"
 ark_PreventDownloadSurvivors=False
 ark_PreventDownloadItems=False
 ark_PreventDownloadDinos=False
@@ -45,4 +54,4 @@ ark_PreventUploadSurvivors=False
 ark_PreventUploadItems=False
 ark_PreventUploadDinos=False
 ark_noTributeDownloads=false
-arkopt_ClusterDirOverride=/home/{{ ark_user }}/arkservers/clusterdata
+arkopt_ClusterDirOverride="/home/{{ ark_user }}/arkservers/clusterdata"

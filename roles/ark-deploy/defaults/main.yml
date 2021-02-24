@@ -3,6 +3,7 @@ ark_server_name: "DMH"
 ark_user: steam
 ark_group: steam
 ark_max_players: 40
+ark_cluster_id: dmharkcluster
 
 # CSV List of mod IDs for ARK.
 ark_mod_ids: "1404697612,489596581,1565015734,821530042,1400323349,859198322,741203089,1380777369"
