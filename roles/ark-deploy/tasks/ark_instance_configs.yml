@@ -22,7 +22,7 @@
 
 - name: Make ARK Saved directory.
   file:
-    path: "/home/{{ ark_user }}/arkservers/{{ item.name | replace(\"_P\",'') | lower }}/ShooterGame/Saved/Config/LinuxServer"
+    path: "/home/{{ ark_user }}/arkservers/{{ item.name | replace(\"_P\",'') | lower }}/ShooterGame/Saved"
     state: directory
     owner: "{{ ark_user }}"
     group: "{{ ark_group }}"
@@ -31,7 +31,7 @@
 
 - name: Make ARK Config directory.
   file:
-    path: "/home/{{ ark_user }}/arkservers/{{ item.name | replace(\"_P\",'') | lower }}/ShooterGame/Saved/Config/"
+    path: "/home/{{ ark_user }}/arkservers/{{ item.name | replace(\"_P\",'') | lower }}/ShooterGame/Saved/Config"
     state: directory
     owner: "{{ ark_user }}"
     group: "{{ ark_group }}"
