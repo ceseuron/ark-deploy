@@ -1,3 +1,3 @@
 - name: Bring ARK instance online.
-  command: "arkmanager start @{{ item.name | replace(\"_P\",'') | lower }}"
+  command: "arkmanager start @{{ item.name | replace('_P','') | lower }}"
   with_items: "{{ ark_server_maps }}"

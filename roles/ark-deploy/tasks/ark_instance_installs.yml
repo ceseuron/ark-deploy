@@ -4,12 +4,11 @@
   register: ark_instances_installed
 
 - name: Install ARK instances. This will take some time.
-  command: "arkmanager install @{{ item.name | replace(\"_P\",'') | lower }}"
+  command: "stat /home/{{ ark_user }}/arkservers/{{ item.name | replace('_P','') | lower }}/version.txt || arkmanager install @{{ item.name | replace('_P','') | lower }}"
   with_items: "{{ ark_server_maps }}"
-  when: not ark_instances_installed.stat.exists
 
 - name: Install ARK mods. This will take some time.
-  command: "arkmanager installmods @{{ item.name | replace(\"_P\",'') | lower }}"
+  command: "arkmanager installmods @{{ item.name | replace('_P','') | lower }}"
   with_items: "{{ ark_server_maps }}"
   when: not ark_instances_installed.stat.exists
 
