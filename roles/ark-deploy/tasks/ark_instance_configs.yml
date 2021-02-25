@@ -4,7 +4,7 @@
 - name: Deploy ARK instance configurations.
   template:
     src: ./roles/ark-deploy/templates/ark_instance.cfg.j2
-    dest: "/etc/arkmanager/instances/{{ item.name | replace(\"_P\",'') | lower }}.cfg"
+    dest: "/etc/arkmanager/instances/{{ item.name | replace('_P','') | lower }}.cfg"
     mode: 0644
   with_items: "{{ ark_server_maps }}"
 
@@ -23,7 +23,7 @@
 
 - name: Make ARK Saved directory.
   file:
-    path: "/home/{{ ark_user }}/arkservers/{{ item.name | replace(\"_P\",'') | lower }}/ShooterGame/Saved"
+    path: "/home/{{ ark_user }}/arkservers/{{ item.name | replace('_P','') | lower }}/ShooterGame/Saved"
     state: directory
     owner: "{{ ark_user }}"
     group: "{{ ark_group }}"
@@ -32,7 +32,7 @@
 
 - name: Make ARK Config directory.
   file:
-    path: "/home/{{ ark_user }}/arkservers/{{ item.name | replace(\"_P\",'') | lower }}/ShooterGame/Saved/Config"
+    path: "/home/{{ ark_user }}/arkservers/{{ item.name | replace('_P','') | lower }}/ShooterGame/Saved/Config"
     state: directory
     owner: "{{ ark_user }}"
     group: "{{ ark_group }}"
@@ -41,7 +41,7 @@
 
 - name: Make ARK LinuxServer directory.
   file:
-    path: "/home/{{ ark_user }}/arkservers/{{ item.name | replace(\"_P\",'') | lower }}/ShooterGame/Saved/Config/LinuxServer"
+    path: "/home/{{ ark_user }}/arkservers/{{ item.name | replace('_P','') | lower }}/ShooterGame/Saved/Config/LinuxServer"
     state: directory
     owner: "{{ ark_user }}"
     group: "{{ ark_group }}"

@@ -13,3 +13,6 @@
 
 - name: Start ARK instances.
   include_tasks: ark_instance_services.yml
+
+- name: Set up the Cronjobs for ARK
+  include_tasks: ark_instance_cronjobs.yml
