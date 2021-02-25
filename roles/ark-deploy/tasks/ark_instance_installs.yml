@@ -4,7 +4,13 @@
   register: ark_instances_installed
 
 - name: Install ARK instances. This will take some time.
-  command: "stat /home/{{ ark_user }}/arkservers/{{ item.name | replace('_P','') | lower }}/version.txt || arkmanager install @{{ item.name | replace('_P','') | lower }}"
+  shell: |
+    if [[ `stat /home/{{ ark_user }}/arkservers/{{ item.name | replace('_P','') | lower }}/version.txt` -ne 0 ]]; then
+      arkmanager install @{{ item.name | replace('_P','') | lower }};
+    else
+      echo "ARK instance is already installed!"
+      exit 0
+    fi
   with_items: "{{ ark_server_maps }}"
 
 - name: Install ARK mods. This will take some time.
