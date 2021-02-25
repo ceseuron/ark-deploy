@@ -5,14 +5,12 @@
     user: root
     hour: "10"
     minute: "30"
-    state: present
   with_items: "{{ ark_server_maps }}"
 
-- name: Deploy update check cronjobs.
+- name: Deploy backup cronjobs.
   cron:
     name: "arkbackup-{{ item.name | replace('_P','') | lower }}"
     job: "arkmanager backup @{{ item.name | replace('_P','') | lower }}"
     user: root
     minute: "0"
-    state: present
   with_items: "{{ ark_server_maps }}"
