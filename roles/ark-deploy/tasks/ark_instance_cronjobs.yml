@@ -1,18 +1,18 @@
 - name: Deploy update check cronjobs.
   cron:
-    name: arkupdate
+    name: "arkupdate-{{ item.name | replace('_P','') | lower }}"
     job: "arkmanager update @{{ item.name | replace('_P','') | lower }} --safe --warn --saveworld --backup --update-mods"
     user: root
-    hour: 10
-    minute: 30
+    hour: "10"
+    minute: "30"
     state: present
   with_items: "{{ ark_server_maps }}"
 
 - name: Deploy update check cronjobs.
   cron:
-    name: arkupdate
+    name: "arkbackup-{{ item.name | replace('_P','') | lower }}"
     job: "arkmanager backup @{{ item.name | replace('_P','') | lower }}"
     user: root
-    minute: 0
+    minute: "0"
     state: present
   with_items: "{{ ark_server_maps }}"
