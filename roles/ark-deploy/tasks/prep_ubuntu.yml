@@ -21,16 +21,9 @@
 
 - name: Install packages.
   apt:
-    name: "{{ item }}"
+    name: ['lib32gcc1', 'perl-modules', 'curl', 'lsof', 'libc6-i386', 'bzip2']
     state: present
     update_cache: true
-  with_items:
-  - lib32gcc1
-  - perl-modules
-  - curl
-  - lsof
-  - libc6-i386
-  - bzip2
 
 - name: Auto-accept Steam license.
   debconf:
