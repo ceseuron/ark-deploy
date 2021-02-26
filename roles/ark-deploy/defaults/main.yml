@@ -25,4 +25,4 @@ ark_server_maps:
 - name: TheCenter
   port: 7782
   query_port: 27021
-  rcon_port: 24096
+  rcon_port: 24095
