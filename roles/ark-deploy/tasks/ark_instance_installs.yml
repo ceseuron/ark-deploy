@@ -9,7 +9,13 @@
   with_items: "{{ ark_server_maps }}"
 
 - name: Install ARK mods. This will take some time.
-  command: "arkmanager installmods @{{ item.name | replace('_P','') | lower }}"
+  shell: |
+    if [ ! -f "/home/{{ ark_user }}/arkservers/{{ item.name | lower }}/version.txt" ]; then
+      arkmanager installmods @{{ item.name | replace('_P','') | lower }};
+    else
+      echo "ARK mods have already been deployed!"
+      exit 0
+    fi
   with_items: "{{ ark_server_maps }}"
 
 - name: Create ARK instance installed flag.
