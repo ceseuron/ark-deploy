@@ -18,10 +18,9 @@
     fi
   with_items: "{{ ark_server_maps }}"
 
-- name: Create ARK instance installed flag.
+- name: Deploy ARK customized Engine.ini file.
   template:
-    src: ./roles/ark-deploy/templates/instances_installed.cfg.j2
-    dest: /home/{{ ark_user }}/arkservers/instances_installed.cfg
-    owner: "{{ ark_user }}"
-    group: "{{ ark_group }}"
+    src: ./roles/ark-deploy/templates/Engine.ini.j2
+    dest: "/home/"{{ ark_user }}"/arkservers/{{ item.name | replace('_P','') | lower }}/ShooterGame/Saved/Config/LinuxServer/Engine.ini"
     mode: 0644
+  with_items: "{{ ark_server_maps }}"
