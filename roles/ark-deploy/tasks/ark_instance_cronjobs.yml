@@ -1,3 +1,12 @@
+- name: Copy restart bash script.
+  copy:
+    src: "{{ role_path }}/files/restart.sh"
+    dest: "/home/{{ ark_user }}/arkservers/restart.sh"
+    mode: u+x
+    owner: "{{ ark_user }}"
+    group: "{{ ark_group }}"
+  with_items: "{{ ark_server_maps }}"
+
 - name: Deploy update check cronjobs.
   cron:
     name: "arkupdate-{{ item.name | replace('_P','') | lower }}"
@@ -13,4 +22,13 @@
     job: "arkmanager backup @{{ item.name | replace('_P','') | lower }}"
     user: root
     minute: "0"
+  with_items: "{{ ark_server_maps }}"
+
+- name: Deploy nightly restart cronjob.
+  cron:
+    name: "arkrestart-{{ item.name | replace('_P','') | lower }}"
+    job: "/home/{{ ark_user }}/arkservers/restart.sh @{{ item.name | replace('_P','') | lower }}"
+    user: root
+    hour: 10
+    minute: 0
   with_items: "{{ ark_server_maps }}"
