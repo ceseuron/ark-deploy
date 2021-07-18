@@ -1,5 +1,11 @@
 - name: Stop any running instances that are disabled.
-  command: "arkmanager stop @{{ item.name | replace('_P','') | lower }}"
+  shell: |
+    if [ -f "/etc/arkmanager/instances/{{ item.name | replace('_P','') | lower }}.cfg" ]; then
+      arkmanager stop @"{{ item.name | replace('_P','') | lower }}"
+    else
+      echo "Cannot stop instance because the configuration does not exist."
+      exit 0
+    fi
   with_items: "{{ ark_server_maps }}"
   when: item.enabled == false
 
