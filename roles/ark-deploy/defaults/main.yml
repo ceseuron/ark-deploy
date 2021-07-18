@@ -45,8 +45,8 @@ ark_server_maps:
   query_port: 27023
   rcon_port: 24096
   enabled: true
-# - name: Genesis
-#   port: 7786
-#   query_port: 27025
-#   rcon_port: 24097
-#   enabled: true
+- name: Genesis
+  port: 7786
+  query_port: 27025
+  rcon_port: 24097
+  enabled: true
