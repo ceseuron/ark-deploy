@@ -21,23 +21,33 @@ ark_mod_ids: "1404697612,489596581,1565015734,821530042,1400323349,859198322,741
 # List of maps to be run in the cluster. Must use proper Wildcard names for maps.
 ark_server_maps:
 # Shutdown of The Island.
-# - name: TheIsland
-#   port: 7776
-#   query_port: 27015
-#   rcon_port: 24092
+- name: TheIsland
+  port: 7776
+  query_port: 27015
+  rcon_port: 24092
+  enabled: false
 - name: ScorchedEarth_P
   port: 7778
   query_port: 27017
   rcon_port: 24093
+  enabled: false
 - name: Aberration_P
   port: 7780
   query_port: 27019
   rcon_port: 24094
+  enabled: true
 - name: TheCenter
   port: 7782
   query_port: 27021
   rcon_port: 24095
+  enabled: true
 - name: Extinction
   port: 7784
   query_port: 27023
   rcon_port: 24096
+  enabled: true
+- name: Genesis
+  port: 7786
+  query_port: 27025
+  rcon_port: 24097
+  enabled: true

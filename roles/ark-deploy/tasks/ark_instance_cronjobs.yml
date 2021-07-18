@@ -5,24 +5,16 @@
     mode: u+x
     owner: "{{ ark_user }}"
     group: "{{ ark_group }}"
-  with_items: "{{ ark_server_maps }}"
-
-- name: Deploy update check cronjobs.
-  cron:
-    name: "arkupdate-{{ item.name | replace('_P','') | lower }}"
-    job: "arkmanager update @{{ item.name | replace('_P','') | lower }} --safe --warn --saveworld --backup --update-mods"
-    user: root
-    hour: "10"
-    minute: "30"
-  with_items: "{{ ark_server_maps }}"
 
 - name: Deploy backup cronjobs.
   cron:
     name: "arkbackup-{{ item.name | replace('_P','') | lower }}"
     job: "arkmanager backup @{{ item.name | replace('_P','') | lower }}"
     user: root
-    minute: "0"
+    hour: 9
+    minute: 30
   with_items: "{{ ark_server_maps }}"
+  when: item.enabled == true
 
 - name: Deploy nightly restart cronjob.
   cron:
@@ -32,3 +24,4 @@
     hour: 10
     minute: 0
   with_items: "{{ ark_server_maps }}"
+  when: item.enabled == true

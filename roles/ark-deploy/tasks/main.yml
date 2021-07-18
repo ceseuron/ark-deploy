@@ -16,3 +16,6 @@
 
 - name: Set up the Cronjobs for ARK
   include_tasks: ark_instance_cronjobs.yml
+
+- name: Clean up disabled instances.
+  include_tasks: ark_instance_cleanup.yml

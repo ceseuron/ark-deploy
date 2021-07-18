@@ -7,6 +7,7 @@
       exit 0
     fi
   with_items: "{{ ark_server_maps }}"
+  when: item.enabled == true
 
 - name: Install ARK mods. This will take some time.
   shell: |
@@ -17,6 +18,7 @@
       exit 0
     fi
   with_items: "{{ ark_server_maps }}"
+  when: item.enabled == true
 
 - name: Deploy ARK customized Engine.ini file.
   template:
@@ -24,3 +26,4 @@
     dest: "/home/{{ ark_user }}/arkservers/{{ item.name | replace('_P','') | lower }}/ShooterGame/Saved/Config/LinuxServer/Engine.ini"
     mode: 0644
   with_items: "{{ ark_server_maps }}"
+  when: item.enabled == true
