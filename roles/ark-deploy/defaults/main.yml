@@ -20,7 +20,6 @@ ark_mod_ids: "1404697612,489596581,1565015734,821530042,1400323349,859198322,741
 
 # List of maps to be run in the cluster. Must use proper Wildcard names for maps.
 ark_server_maps:
-# Shutdown of The Island.
 - name: TheIsland
   port: 7776
   query_port: 27015
