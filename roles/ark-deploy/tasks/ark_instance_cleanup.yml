@@ -1,0 +1,53 @@
+- name: Stop any running instances that are disabled.
+  shell: |
+    if [ -f "/etc/arkmanager/instances/{{ item.name | replace('_P','') | lower }}.cfg" ]; then
+      arkmanager stop @"{{ item.name | replace('_P','') | lower }}"
+    else
+      echo "Cannot stop instance because the configuration does not exist."
+      exit 0
+    fi
+  with_items: "{{ ark_server_maps }}"
+  when: item.enabled == false
+
+- name: Remove backup cronjobs for any inactive instances.
+  cron:
+    name: "arkbackup-{{ item.name | replace('_P','') | lower }}"
+    state: absent
+  with_items: "{{ ark_server_maps }}"
+  when: item.enabled == false
+
+- name: Remove restart cronjobs for any inactive instances.
+  cron:
+    name: "arkrestart-{{ item.name | replace('_P','') | lower }}"
+    state: absent
+  with_items: "{{ ark_server_maps }}"
+  when: item.enabled == false
+
+- name: Take a final archive of the savegame data.
+  shell: |
+    if [ ! -f "/home/{{ ark_user }}/ark_backups/{{ item.name | lower }}/{{ item.name | lower }}_final-backup.tar.gz" ]; then
+      tar zcvf "/home/{{ ark_user }}/ark_backups/{{ item.name | lower }}/{{ item.name | lower }}_final-backup.tar.gz" "/home/{{ ark_user }}/arkservers/{{ item.name | lower }}/ShooterGame/Saved/Saved-{{ item.name }}"
+    else
+      echo "Ark final backup for {{ item.name }} has already been taken."
+      exit 0
+    fi
+  with_items: "{{ ark_server_maps }}"
+  when: item.enabled == false
+
+- name: Remove the arkmanager configuration file for the instance.
+  file:
+    path: "/etc/arkmanager/instances/{{ item.name | replace('_P','') | lower }}.cfg"
+    state: absent
+  with_items: "{{ ark_server_maps }}"
+  when: item.enabled == false
+
+- name: Remove the installation directory if the final backup archive exists.
+  shell: |
+    if [ -f "/home/{{ ark_user }}/ark_backups/{{ item.name | lower }}/{{ item.name | lower }}_final-backup.tar.gz" ]; then
+      rm -rf "/home/{{ ark_user }}/arkservers/{{ item.name | lower }}"
+    else
+      echo "Ark final backup for {{ item.name }} was not taken. Skipping removal."
+      exit 0
+    fi
+  with_items: "{{ ark_server_maps }}"
+  when: item.enabled == false
