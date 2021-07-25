@@ -32,5 +32,5 @@
   command: "sed -i 's/DinoCountMultiplier=1.0/DinoCountMultiplier={{ ci_spawn_multiplier }}/' /home/{{ ark_user }}/arkservers/{{ item.name | replace('_P','') | lower }}/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
   with_items: "{{ ark_server_maps }}"
   when:
-    - item.enaled == true
+    - item.enabled == true
     - item.name == "CrystalIsles"
