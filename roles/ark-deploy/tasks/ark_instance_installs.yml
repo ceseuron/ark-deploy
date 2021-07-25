@@ -27,3 +27,10 @@
     mode: 0644
   with_items: "{{ ark_server_maps }}"
   when: item.enabled == true
+
+- name: Increase Crystal Isles spawn rate.
+  command: "sed -i 's/DinoCountMultiplier=1.0/DinoCountMultiplier={{ ci_spawn_multiplier }}/' /home/{{ ark_user }}/arkservers/{{ item.name | replace('_P','') | lower }}/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
+  with_items: "{{ ark_server_maps }}"
+  when:
+    - item.enaled == true
+    - item.name == "CrystalIsles"
