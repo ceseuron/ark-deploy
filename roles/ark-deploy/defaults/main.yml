@@ -15,6 +15,9 @@ ark_server_max_client_rate: 1048576
 ark_server_min_dynamic_rate: 6990
 ark_server_max_dynamic_rate: 149796
 
+# Crystal Isles specific spawn rate multipler.
+ci_spawn_multiplier: 2.0
+
 # CSV List of mod IDs for ARK.
 ark_mod_ids: "1404697612,489596581,1565015734,821530042,1400323349,859198322,741203089,1380777369,2017186718,932816570,2008948402"
 
@@ -34,7 +37,7 @@ ark_server_maps:
   port: 7780
   query_port: 27019
   rcon_port: 24094
-  enabled: true
+  enabled: false
 - name: TheCenter
   port: 7782
   query_port: 27021
@@ -49,4 +52,9 @@ ark_server_maps:
   port: 7786
   query_port: 27025
   rcon_port: 24097
+  enabled: true
+- name: CrystalIsles
+  port: 7788
+  query_port: 27027
+  rcon_port: 24098
   enabled: true
