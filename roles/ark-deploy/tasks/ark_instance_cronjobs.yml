@@ -19,7 +19,7 @@
 - name: Deploy nightly restart cronjob.
   cron:
     name: "arkrestart-{{ item.name | replace('_P','') | lower }}"
-    job: "/home/{{ ark_user }}/arkservers/restart.sh @{{ item.name | replace('_P','') | lower }}"
+    job: "arkmanager restart @{{ item.name | replace('_P','') | lower }} --safe --saveworld --backup --warn"
     user: root
     hour: 10
     minute: 0
