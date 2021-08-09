@@ -60,6 +60,6 @@ ark_server_maps:
   enabled: false
 - name: Gen2
   port: 7790
-  query_port: 27028
+  query_port: 27029
   rcon_port: 24099
   enabled: true
