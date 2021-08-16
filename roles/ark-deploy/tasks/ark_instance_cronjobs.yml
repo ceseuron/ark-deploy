@@ -9,7 +9,7 @@
 - name: Deploy backup cronjobs.
   cron:
     name: "arkbackup-{{ item.name | replace('_P','') | lower }}"
-    job: "arkmanager backup @{{ item.name | replace('_P','') | lower }} &> /tmp/{{ item.name | replace('_P','') | lower }}-backup_$(date +%Y%m%d).log"
+    job: "arkmanager backup @{{ item.name | replace('_P','') | lower }} &> /tmp/{{ item.name | replace('_P','') | lower }}-backup_$(date '+%Y%m%d').log"
     user: root
     hour: 9
     minute: 30
@@ -19,7 +19,7 @@
 - name: Deploy nightly restart cronjob.
   cron:
     name: "arkrestart-{{ item.name | replace('_P','') | lower }}"
-    job: "arkmanager restart @{{ item.name | replace('_P','') | lower }} --safe --saveworld --backup --warn &> /tmp/{{ item.name | replace('_P','') | lower }}-restart_$(date +%Y%m%d).log"
+    job: "arkmanager restart @{{ item.name | replace('_P','') | lower }} --safe --saveworld --backup --warn &> /tmp/{{ item.name | replace('_P','') | lower }}-restart_$(date '+%Y%m%d').log"
     user: root
     hour: 10
     minute: 0
