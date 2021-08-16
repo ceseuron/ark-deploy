@@ -8,21 +8,7 @@
     fi
   with_items: "{{ ark_server_maps }}"
   when: item.enabled == false
-
-- name: Remove backup cronjobs for any inactive instances.
-  cron:
-    name: "arkbackup-{{ item.name | replace('_P','') | lower }}"
-    state: absent
-  with_items: "{{ ark_server_maps }}"
-  when: item.enabled == false
-
-- name: Remove restart cronjobs for any inactive instances.
-  cron:
-    name: "arkrestart-{{ item.name | replace('_P','') | lower }}"
-    state: absent
-  with_items: "{{ ark_server_maps }}"
-  when: item.enabled == false
-
+  
 - name: Take a final archive of the savegame data.
   shell: |
     if [ ! -f "/home/{{ ark_user }}/ark_backups/{{ item.name | lower }}/{{ item.name | lower }}_final-backup.tar.gz" ]; then
