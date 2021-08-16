@@ -81,6 +81,21 @@
     group: "{{ ark_group }}"
     state: present
 
+- name: Add Ubuntu user to ARK group.
+  user:
+    name: ubuntu
+    groups: "{{ ark_group }}"
+    append: yes
+
+- name: Modify ARK user home directory for full group access.
+  file:
+    path: /home/"{{ ark_user }}"
+    owner: "{{ ark_user }}"
+    group: "{{ ark_group }}"
+    mode: 0775
+    state: directory
+    recurse: yes
+
 - name: Check if swapfile exists.
   stat:
     path: /swapfile
