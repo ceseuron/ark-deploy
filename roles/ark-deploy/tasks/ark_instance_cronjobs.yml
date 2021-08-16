@@ -1,45 +1,17 @@
-- name: Copy restart bash script.
-  copy:
-    src: "{{ role_path }}/files/restart.sh"
-    dest: "/home/{{ ark_user }}/arkservers/restart.sh"
-    mode: u+x
-    owner: "{{ ark_user }}"
-    group: "{{ ark_group }}"
-
-- name: Deploy backup cronjobs.
-  cron:
-    name: "arkbackup-{{ item.name | replace('_P','') | lower }}"
-    job: "arkmanager backup @{{ item.name | replace('_P','') | lower }} &> /tmp/{{ item.name | replace('_P','') | lower }}-backup_$(date '+%Y%m%d').log"
-    user: root
-    hour: 9
-    minute: 30
-    state: absent
-  with_items: "{{ ark_server_maps }}"
-  when: item.enabled == true
-
-- name: Deploy nightly restart cronjob.
-  cron:
-    name: "arkrestart-{{ item.name | replace('_P','') | lower }}"
-    job: "arkmanager restart @{{ item.name | replace('_P','') | lower }} --safe --saveworld --backup --warn &> /tmp/{{ item.name | replace('_P','') | lower }}-restart_$(date '+%Y%m%d').log"
-    user: root
-    hour: 10
-    minute: 0
-    state: absent
-  with_items: "{{ ark_server_maps }}"
-  when: item.enabled == true
-
 - name: Deploy daily backup cronjob.
   cron:
     name: "arkbackup-all"
-    job: "arkmanager backup @all &> /tmp/arkmanager-restart_$(date '+%Y%m%d').log"
-    user: root
+    job: "sudo arkmanager backup @all &> /tmp/arkmanager-restart_$(date '+%Y%m%d').log"
+    user: ubuntu
     hour: 22
     minute: 0
+    cron_file: /etc/crontab
 
 - name: Deploy nightly restart cronjob.
   cron:
     name: "arkrestart-all"
-    job: "arkmanager restart @all --safe --saveworld --backup --warn &> /tmp/arkmanager-restart_$(date '+%Y%m%d').log"
-    user: root
+    job: "sudo arkmanager restart @all --safe --saveworld --backup --warn &> /tmp/arkmanager-restart_$(date '+%Y%m%d').log"
+    user: ubuntu
     hour: 10
     minute: 0
+    cron_file: /etc/crontab
