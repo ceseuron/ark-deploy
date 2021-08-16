@@ -87,7 +87,7 @@
   register: swap_file
 
 - name: Create 4GB swapfile on root.
-  command: dd if=/dev/zero of=/swapfile bs=128M count=32
+  command: dd if=/dev/zero of=/swapfile bs=128M count=64
   when: not swap_file.stat.exists
 
 - name: Set permissions on swapfile.
