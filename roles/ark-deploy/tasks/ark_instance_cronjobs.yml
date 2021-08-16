@@ -28,12 +28,12 @@
   with_items: "{{ ark_server_maps }}"
   when: item.enabled == true
 
-- name: Deploy nightly backup cronjob.
+- name: Deploy daily backup cronjob.
   cron:
     name: "arkbackup-all"
     job: "arkmanager backup @all &> /tmp/arkmanager-restart_$(date '+%Y%m%d').log"
     user: root
-    hour: 10
+    hour: 22
     minute: 0
 
 - name: Deploy nightly restart cronjob.
