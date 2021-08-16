@@ -9,7 +9,7 @@
 - name: Deploy backup cronjobs.
   cron:
     name: "arkbackup-{{ item.name | replace('_P','') | lower }}"
-    job: "arkmanager backup @{{ item.name | replace('_P','') | lower }}"
+    job: "arkmanager backup @{{ item.name | replace('_P','') | lower }} &> /tmp/{{ item.name | replace('_P','') | lower }}-backup_$(date +%Y%m%d).log"
     user: root
     hour: 9
     minute: 30
