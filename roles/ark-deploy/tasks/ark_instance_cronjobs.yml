@@ -5,7 +5,6 @@
     user: steam
     hour: 22
     minute: 0
-    cron_file: /etc/crontab
 
 - name: Deploy nightly restart cronjob.
   cron:
