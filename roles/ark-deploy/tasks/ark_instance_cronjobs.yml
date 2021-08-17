@@ -1,7 +1,7 @@
 - name: Deploy daily backup cronjob.
   cron:
     name: "arkbackup-all"
-    job: "arkmanager backup @all &> /home/{{ ark_user }}/arkmanager-restart_$(date "+\%Y\%m\%d").log"
+    job: "arkmanager backup @all &> /home/{{ ark_user }}/arkmanager-restart_$(date \"+%Y%m%d\").log"
     user: steam
     hour: 22
     minute: 0
@@ -9,7 +9,7 @@
 - name: Deploy nightly restart cronjob.
   cron:
     name: "arkrestart-all"
-    job: "arkmanager restart @all --safe --saveworld --backup --warn &> /home/{{ ark_user }}/arkmanager-restart_$(date "+\%Y\%m\%d").log"
+    job: "arkmanager restart @all --safe --saveworld --backup --warn &> /home/{{ ark_user }}/arkmanager-restart_$(date \"+%Y%m%d\").log"
     user: steam
     hour: 10
     minute: 0
