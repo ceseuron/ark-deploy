@@ -52,7 +52,7 @@ ark_server_maps:
   port: 7786
   query_port: 27025
   rcon_port: 24097
-  enabled: true
+  enabled: false
 - name: CrystalIsles
   port: 7788
   query_port: 27027
