@@ -42,7 +42,7 @@ ark_server_maps:
   port: 7782
   query_port: 27021
   rcon_port: 24095
-  enabled: true
+  enabled: false
 - name: Extinction
   port: 7784
   query_port: 27023
