@@ -19,7 +19,7 @@ ark_server_max_dynamic_rate: 149796
 ci_spawn_multiplier: 2.0
 
 # CSV List of mod IDs for ARK.
-ark_mod_ids: "1404697612,489596581,1565015734,821530042,1400323349,859198322,741203089,1380777369,2017186718,932816570,2008948402,1980529718,1639458270"
+ark_mod_ids: "1404697612,489596581,1565015734,821530042,1400323349,859198322,741203089,1380777369,2017186718,932816570,2008948402,1980529718,1639458270,1741916864"
 
 # List of maps to be run in the cluster. Must use proper Wildcard names for maps.
 ark_server_maps:
@@ -42,12 +42,12 @@ ark_server_maps:
   port: 7782
   query_port: 27021
   rcon_port: 24095
-  enabled: true
+  enabled: false
 - name: Extinction
   port: 7784
   query_port: 27023
   rcon_port: 24096
-  enabled: true
+  enabled: false
 - name: Genesis
   port: 7786
   query_port: 27025
@@ -62,4 +62,9 @@ ark_server_maps:
   port: 7790
   query_port: 27029
   rcon_port: 24099
+  enabled: true
+- name: Vikings_P
+  port: 7792
+  query_port: 27031
+  rcon_port: 24100
   enabled: true
