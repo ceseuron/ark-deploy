@@ -63,7 +63,7 @@ ark_server_maps:
   query_port: 27029
   rcon_port: 24099
   enabled: true
-- name: Vikings_P
+- name: Viking_P
   port: 7792
   query_port: 27031
   rcon_port: 24100
