@@ -71,5 +71,5 @@ ark_server_maps:
 - name: LostIsland
   port: 7794
   query_port: 27033
-  rcon_port: 24100
+  rcon_port: 24101
   enabled: true
