@@ -80,37 +80,3 @@
     comment: ARK server user.
     group: "{{ ark_group }}"
     state: present
-
-- name: Check if swapfile exists.
-  stat:
-    path: /swapfile
-  register: swap_file
-
-- name: Create 4GB swapfile on root.
-  command: dd if=/dev/zero of=/swapfile bs=128M count=64
-  when: not swap_file.stat.exists
-
-- name: Set permissions on swapfile.
-  file:
-    path: /swapfile
-    owner: root
-    group: root
-    mode: 0600
-
-- name: Set the swapfile area for Linux.
-  command: mkswap /swapfile
-  when: not swap_file.stat.exists
-
-- name: Turn on swap immediately.
-  command: swapon /swapfile
-  when: not swap_file.stat.exists
-
-- name: Write swap entry in fstab
-  mount:
-    name: none
-    src: /swapfile
-    fstype: swap
-    opts: sw
-    passno: 0
-    dump: 0
-    state: present
