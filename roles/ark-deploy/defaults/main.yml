@@ -33,11 +33,6 @@ ark_server_maps:
   query_port: 27029
   rcon_port: 24099
   enabled: true
-- name: Viking_P
-  port: 7792
-  query_port: 27031
-  rcon_port: 24100
-  enabled: false
 - name: LostIsland
   port: 7794
   query_port: 27033
