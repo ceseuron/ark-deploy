@@ -23,41 +23,11 @@ ark_mod_ids: "1404697612,489596581,1565015734,821530042,1400323349,859198322,741
 
 # List of maps to be run in the cluster. Must use proper Wildcard names for maps.
 ark_server_maps:
-- name: TheIsland
-  port: 7776
-  query_port: 27015
-  rcon_port: 24092
-  enabled: false
-- name: ScorchedEarth_P
-  port: 7778
-  query_port: 27017
-  rcon_port: 24093
-  enabled: false
 - name: Aberration_P
   port: 7780
   query_port: 27019
   rcon_port: 24094
-  enabled: false
-- name: TheCenter
-  port: 7782
-  query_port: 27021
-  rcon_port: 24095
-  enabled: false
-- name: Extinction
-  port: 7784
-  query_port: 27023
-  rcon_port: 24096
-  enabled: false
-- name: Genesis
-  port: 7786
-  query_port: 27025
-  rcon_port: 24097
-  enabled: false
-- name: CrystalIsles
-  port: 7788
-  query_port: 27027
-  rcon_port: 24098
-  enabled: false
+  enabled: true
 - name: Gen2
   port: 7790
   query_port: 27029
@@ -67,9 +37,19 @@ ark_server_maps:
   port: 7792
   query_port: 27031
   rcon_port: 24100
-  enabled: true
+  enabled: false
 - name: LostIsland
   port: 7794
   query_port: 27033
   rcon_port: 24101
+  enabled: true
+- name: Valguero_P
+  port: 7796
+  query_port: 27035
+  rcon_port: 24102
+  enable: true
+- name: Ragnarok
+  port: 7798
+  query_port: 27037
+  rcon_port: 24103
   enabled: true
