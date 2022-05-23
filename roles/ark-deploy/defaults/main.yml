@@ -47,7 +47,7 @@ ark_server_maps:
   port: 7796
   query_port: 27035
   rcon_port: 24102
-  enable: true
+  enabled: true
 - name: Ragnarok
   port: 7798
   query_port: 27037
