@@ -33,6 +33,11 @@ ark_server_maps:
   query_port: 27029
   rcon_port: 24099
   enabled: true
+- name: Fjordur
+  port: 7792
+  query_port: 27031
+  rcon_port: 240100
+  enabled: true
 - name: LostIsland
   port: 7794
   query_port: 27033
