@@ -23,31 +23,6 @@ ark_mod_ids: "1404697612,489596581,1565015734,821530042,1400323349,859198322,741
 
 # List of maps to be run in the cluster. Must use proper Wildcard names for maps.
 ark_server_maps:
-- name: Aberration_P
-  port: 7780
-  query_port: 27019
-  rcon_port: 24094
-  enabled: true
-- name: Gen2
-  port: 7790
-  query_port: 27029
-  rcon_port: 24099
-  enabled: true
-- name: Fjordur
-  port: 7792
-  query_port: 27031
-  rcon_port: 24100
-  enabled: true
-- name: LostIsland
-  port: 7794
-  query_port: 27033
-  rcon_port: 24101
-  enabled: true
-- name: Valguero_P
-  port: 7796
-  query_port: 27035
-  rcon_port: 24102
-  enabled: true
 - name: Ragnarok
   port: 7798
   query_port: 27037
