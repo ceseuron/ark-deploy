@@ -29,17 +29,17 @@ ark_server_maps:
   rcon_port: 24105
   enabled: true
 - name: Valguero_P
-  port: 7801
+  port: 7802
   query_port: 27041
   rcon_port: 24106
   enabled: true
 - name: Fjordur
-  port: 7802
+  port: 7804
   query_port: 27043
   rcon_port: 24107
   enabled: true
 - name: Extinction
-  port: 7803
+  port: 7806
   query_port: 27045
   rcon_port: 24108
   enabled: true
