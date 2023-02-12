@@ -19,11 +19,23 @@
   command: dpkg --add-architecture i386
   when: i386_result.rc >= 1
 
-- name: Install packages.
+- name: Install packages for Ubuntu 20.04.
   apt:
     name: ['lib32gcc1', 'perl-modules', 'curl', 'lsof', 'libc6-i386', 'bzip2']
     state: present
     update_cache: true
+  when: 
+  - ansible_distribution == "Ubuntu"
+  - ansible_distribution_version == "20.04"
+
+- name: Install packages for Ubuntu 22.04.
+  apt:
+    name: ['lib32gcc-s1', 'perl-modules', 'curl', 'lsof', 'libc6-i386', 'bzip2']
+    state: present
+    update_cache: true
+  when: 
+  - ansible_distribution == "Ubuntu"
+  - ansible_distribution_version == "22.04"
 
 - name: Auto-accept Steam license.
   debconf:
