@@ -12,6 +12,6 @@
     name: "arkrestart-all"
     job: "arkmanager restart @all --safe --saveworld --backup --warn > \"/home/{{ ark_user }}/arkmanager-restart.log\""
     user: steam
-    hour: 10
-    minute: 0
+    hour: 11
+    minute: 30
     cron_file: /etc/crontab
