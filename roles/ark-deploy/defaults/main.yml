@@ -5,12 +5,14 @@ ark_group: steam
 ark_max_players: 40
 ark_cluster_id: dmharkcluster
 
-# The "tick" rate is the number of times per second the server updates the clients.
-# Default is 30, but higher value may immprove rubber banding.
-ark_server_tick_rate: 90
+# The "tick" rate is the number of times per second the server updates.
+# Default is 30. Higher values result in smoother dino movement but will
+# increase CPU usage and potentially cause rubber-banding with clients.
+ark_server_tick_rate: 30
 
 # The default maximum client bandwidth rates. Measured in bytes per second.
 ark_server_internet_speed: 1048576
+ark_server_min_client_rate: 1048576
 ark_server_max_client_rate: 1048576
 ark_server_min_dynamic_rate: 6990
 ark_server_max_dynamic_rate: 149796
