@@ -3,9 +3,10 @@ NetServerMaxTickRate={{ ark_server_tick_rate }}
 LanServerMaxTickRate={{ ark_server_tick_rate }}
 MinClientRate={{ ark_server_min_client_rate }}
 MaxClientRate={{ ark_server_max_client_rate }}
-MinInternetClientRate={{ ark_server_max_client_rate }}
+MinInternetClientRate={{ ark_server_min_client_rate }}
 MaxInternetClientRate={{ ark_server_max_client_rate }}
-
-[/script/engine.player]
 ConfiguredInternetSpeed={{ ark_server_internet_speed }}
 ConfiguredLanSpeed={{ ark_server_internet_speed }}
+
+[/script/engine.engine]
+NetClientTicksPerSecond={{ ark_client_tick_rate }}
